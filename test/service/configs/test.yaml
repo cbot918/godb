@@ -1,0 +1,10 @@
+connections:
+  postgresql: 
+    DB: auth
+    Host: localhost
+    Port: 8001
+    User: postgres
+    Password: 12345
+    MaxOpen: 10
+    MaxIdle: 2
+    

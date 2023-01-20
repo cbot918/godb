@@ -12,7 +12,7 @@ type GODB struct {
 	db *sql.DB
 }
 
-func NewDB(
+func New(
 	db string,
 	host string,
 	port int,

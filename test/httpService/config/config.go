@@ -8,11 +8,6 @@ import (
 )
 
 type Config struct {
-	// Server struct {
-	// 	Name string
-	// 	Port string
-	// 	Host string
-	// }
 	Connections struct {
 		Postgresql struct {
 			DB       string
@@ -26,13 +21,12 @@ type Config struct {
 	}
 }
 
-func New() (*Config, error) {
+func New(folderPath string, fileName string, fileType string) (*Config, error) {
 	v := viper.New()
-	v.SetConfigType("yaml")
-	v.SetConfigName("test")
-	v.AddConfigPath("./test/service/configs")
-	// v.AutomaticEnv()
-	// v.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+	v.AddConfigPath(folderPath)
+	v.SetConfigName(fileName)
+	v.SetConfigType(fileType)
+
 	if err := v.ReadInConfig(); err != nil {
 		return nil, fmt.Errorf("read config error: %s", err)
 	}

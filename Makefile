@@ -1,7 +1,7 @@
-DOCKFILE=./test/service/docker/docker-compose.yml
+DOCKFILE=./test/service/docker/auth-docker-compose.yml
 
 init-db:
-	docker-compose up -d -f test/service/auth-docker-compose.yml
+	docker-compose up -d -f $(DOCKFILE)
 
-test-auth:
-	go run test/cmd/testAuth/main.go
+test-http:
+	go run test/cmd/main.go

@@ -1,7 +1,7 @@
 version: "3.7"
 services:
     db:
-        container_name: post
+        container_name: post-auth
         image: postgres:13.2-alpine
         restart: always
         environment:
@@ -9,7 +9,7 @@ services:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: 12345
             PGDATA: /var/lib/postgresql/data
-        volumes:
-            - db-data:/var/lib/postgresql/data
+        # volumes:
+        #     - db-data:/var/lib/postgresql/data
         ports:
             - "8003:5432"

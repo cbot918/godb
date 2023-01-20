@@ -1,6 +1,6 @@
 # godb
 describe:
-  impl godb for practice database config file import and practice writing test-service  
+  a library implements for practice database config file import and practice writing test-service  
 
 
 ## skill

@@ -1,0 +1,38 @@
+做了一個方便用go編譯protobuff的docker
+如果有剛學 go-grpc 的大大可以參考看看
+(覺得實在是好麻煩彎路了好多時間整理一下看有沒有人會用上)
+測過pass: win10跟ubutu (linux/mac環境可以先sudo su才不用一直sudo)
+
+
+下載image:
+```
+docker pull cbot918/protoc-go
+```
+
+case1: 直接build出東西
+pre: 在.proto的位置
+```
+docker run -dit --name protoc-go cbot918/protoc-go
+docker cp . protoc-go:/app
+docker exec protoc-go protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative *.proto
+docker cp protoc-go:/app/. ./
+ls
+docker stop protoc-go && docker container rm protoc-go
+```
+
+case2: 進一次性container裡面build看過程
+```
+docker run --rm -it --name protoc-go cbot918/protoc-go
+```
+@ /app
+```
+apk add git
+git clone https://github.com/cbot918/experiment
+cd experiment/grpc/pb
+protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative *.proto
+ls
+exit
+```
+
+ref: dockerfile
+https://github.com/cbot918/infra-auto/blob/main/src/.yale/docker-config/protoc-go-dockerfile

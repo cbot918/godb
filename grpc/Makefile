@@ -14,7 +14,7 @@ conn:
 
 SOURCE = "pb/."
 DEST = "pb/."
-TEMP = helloworld.proto
+TEMP = users.proto
 proto:
 # docker run -dit --name protoc-go cbot918/protoc-go
 	docker exec protoc-go sh -c "rm /app/*"

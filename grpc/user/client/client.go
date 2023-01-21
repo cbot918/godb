@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log"
 	"time"
 	pb "user/pb/users"
 
@@ -28,7 +29,7 @@ func main() {
 
 	r, err := c.Login(ctx, &pb.LoginRequest{Email: email, Password: password})
 	u.Checke(err, "pb client Login failed")
-	u.Logg(r)
-	// log.Fatalf("Server Res: %s", r.GetMessage())
+	// u.Logg(r)
+	log.Fatalf("Server Res: %s", r.GetName())
 
 }

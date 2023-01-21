@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net"
@@ -10,13 +11,20 @@ import (
 	"google.golang.org/grpc"
 )
 
+const (
+	port = ":50055"
+	name = "yale"
+)
+
 type server struct {
 	pb.UnimplementedAuthServer
 }
 
-const (
-	port = ":50055"
-)
+func (s *server) Login(ctx context.Context, in *pb.LoginRequest) (*pb.LoginReply, error) {
+	log.Printf("Received Email: %v", in.GetEmail())
+	log.Printf("Received Password: %v", in.GetPassword())
+	return &pb.LoginReply{Name: name}, nil
+}
 
 func main() {
 

@@ -14,7 +14,11 @@ proto:
 # docker stop protoc-go && docker container rm protoc-go
 
 
-service:
+server:
 	go run service.go
-clientt:
+client:
 	go run client/client.go
+
+ 
+
+.PHONY: server client proto
